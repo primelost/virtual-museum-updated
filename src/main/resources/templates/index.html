@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Виртуальный музей</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <h1 class="logo">Виртуальный музей: Русь XIII–XV вв.</h1>
+        <nav class="main-nav">
+            <a href="/">Главная</a>
+            <a href="/tour1">Экскурсия 1</a>
+            <a href="/tour2">Экскурсия 2</a>
+            <a href="/tour3">Экскурсия 3</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero">
+        <div class="hero-text">
+            <h2>О музее</h2>
+            <p>Этот виртуальный музей посвящён истории русских земель XIII–XV веков: от монголо-татарского нашествия и зависимости от Золотой Орды до подъёма Москвы и развития духовной культуры.</p>
+            <p>Вы можете выбрать одну из трёх экскурсионных программ, каждая из которых раскрывает важный аспект эпохи.</p>
+        </div>
+
+        <div class="hero-image">
+            <img th:src="@{/images/hero-map.jpg}"
+                 alt="Карта Руси XIII–XV вв.">
+        </div>
+    </section>
+
+    <section class="tours-grid">
+        <article class="tour-card">
+            <div class="hero-image">
+                <img th:src="@{/images/baty.jpg}"
+                     alt="Нашествие батыя">
+            </div>
+            <h3>Экскурсия 1</h3>
+            <h4>Русь и Золотая Орда</h4>
+            <p>Политическая и социальная жизнь русских земель в условиях зависимости от Золотой Орды.</p>
+            <a class="btn" href="/tour1">Перейти к экскурсии</a>
+        </article>
+        <article class="tour-card">
+            <div class="hero-image">
+                <img th:src="@{/images/kulyk.jpg}"
+                     alt="Куликовская битва">
+            </div>
+            <h3>Экскурсия 2</h3>
+            <h4>Подъём Москвы и конец ига</h4>
+            <p>Как Москва стала центром объединения русских земель и завершила ордынское иго.</p>
+            <a class="btn" href="/tour2">Перейти к экскурсии</a>
+        </article>
+        <article class="tour-card">
+            <div class="hero-image">
+                <img th:src="@{/images/4.jpg}"
+                     alt="Троица">
+            </div>
+            <h3>Экскурсия 3</h3>
+            <h4>Духовная Русь и Андрей Рублёв</h4>
+            <p>Творчество Андрея Рублёва и развитие духовной культуры Руси.</p>
+            <a class="btn" href="/tour3">Перейти к экскурсии</a>
+        </article>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2026 Виртуальный музей. Авторы: Колегов Максим, Конышков Леонид, Зезюкин Михаил.</p>
+    </div>
+</footer>
+</body>
+</html>
