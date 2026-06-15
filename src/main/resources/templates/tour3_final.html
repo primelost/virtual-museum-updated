@@ -5,130 +5,178 @@
     <title th:text="${title}">Экскурсия 3</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 
-    <style>
-        .quiz-section {
-            background: linear-gradient(160deg, #fdf6ec, #f5ead8);
-            border-radius: 0.75rem;
-            padding: 1.75rem 2rem;
-            margin-bottom: 1.75rem;
-            box-shadow: 0 4px 14px rgba(60,30,10,0.08);
-            border: 1px solid #d4b880;
-            border-top: 3px solid #b07a30;
-            position: relative;
-        }
-        .quiz-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #8b5e2a, #d4a840, #8b5e2a);
-            border-radius: 0.75rem 0.75rem 0 0;
-        }
-        .quiz-section h3 {
-            margin-top: 0;
-            font-size: 1.3rem;
-            font-weight: normal;
-            color: #5a2e08;
-            letter-spacing: 0.02em;
-            padding-bottom: 0.4rem;
-            border-bottom: 1px solid #d4b880;
-            margin-bottom: 1.25rem;
-        }
-        .quiz-question {
-            background: #fff8f0;
-            border: 1px solid #e0c898;
-            border-radius: 0.6rem;
-            padding: 1.1rem 1.25rem;
-            margin-bottom: 1rem;
-        }
-        .quiz-question p {
-            margin: 0 0 0.75rem;
-            font-weight: bold;
-            color: #2c1a0e;
-            font-size: 0.98rem;
-        }
-        .quiz-options label {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-            margin-bottom: 0.4rem;
-            cursor: pointer;
-            color: #3a2010;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        .quiz-options input[type="radio"] {
-            margin-top: 0.2rem;
-            accent-color: #8b3a0f;
-            flex-shrink: 0;
-        }
-        .quiz-submit {
-            display: inline-block;
-            padding: 0.55rem 1.5rem;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #9b4a10, #c0641a);
-            color: #fdf6ec;
-            font-weight: 600;
-            font-family: system-ui, sans-serif;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(100,40,10,0.3);
-            margin-top: 0.5rem;
-            transition: background 0.2s;
-        }
-        .quiz-submit:hover {
-            background: linear-gradient(135deg, #7a3a08, #a0521a);
-        }
-        .quiz-result {
-            margin-top: 1.25rem;
-            padding: 1rem 1.25rem;
-            border-radius: 0.6rem;
-            font-family: system-ui, sans-serif;
-            font-size: 0.95rem;
-            display: none;
-        }
-        .quiz-result.show { display: block; }
-        .quiz-result.good {
-            background: #f0faf0;
-            border: 1px solid #6aab6a;
-            color: #2a5a2a;
-        }
-        .quiz-result.bad {
-            background: #fff5f0;
-            border: 1px solid #d4826a;
-            color: #6a2a0a;
-        }
-        .quiz-answer-feedback {
-            font-size: 0.85rem;
-            margin-top: 0.3rem;
-            padding: 0.3rem 0.5rem;
-            border-radius: 0.3rem;
-            display: none;
-        }
-        .quiz-answer-feedback.correct {
-            background: #e6f4e6;
-            color: #2a5a2a;
-        }
-        .quiz-answer-feedback.wrong {
-            background: #fde8e0;
-            color: #7a2a0a;
-        }
-        .quiz-reset {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: 999px;
-            background: transparent;
-            color: #8b3a0f;
-            border: 1px solid #8b3a0f;
-            font-size: 0.85rem;
-            cursor: pointer;
-            margin-left: 0.75rem;
-            font-family: system-ui, sans-serif;
-            transition: background 0.2s;
-        }
-        .quiz-reset:hover { background: #fdf0e0; }
-    </style>
+<style>
+.quiz-section {
+  background: linear-gradient(160deg, #fdf6ec, #f5ead8);
+  border-radius: 0.75rem;
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 4px 14px rgba(60,30,10,0.08);
+  border: 1px solid #d4b880;
+  border-top: 3px solid #b07a30;
+  position: relative;
+}
+.quiz-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #8b5e2a, #d4a840, #8b5e2a);
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+.quiz-section h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  font-weight: normal;
+  color: #5a2e08;
+  letter-spacing: 0.02em;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #d4b880;
+  margin-bottom: 1.25rem;
+}
+.quiz-question {
+  background: #fff8f0;
+  border: 1px solid #e0c898;
+  border-radius: 0.6rem;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.quiz-question p {
+  margin: 0 0 0.75rem;
+  font-weight: bold;
+  color: #2c1a0e;
+  font-size: 0.98rem;
+}
+.quiz-options label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  color: #3a2010;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.quiz-options input[type="radio"] {
+  margin-top: 0.2rem;
+  accent-color: #8b3a0f;
+  flex-shrink: 0;
+}
+.quiz-submit {
+  display: inline-block;
+  padding: 0.55rem 1.5rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #9b4a10, #c0641a);
+  color: #fdf6ec;
+  font-weight: 600;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(100,40,10,0.3);
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.quiz-submit:hover {
+  background: linear-gradient(135deg, #7a3a08, #a0521a);
+}
+.quiz-result {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.6rem;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  display: none;
+}
+.quiz-result.show { display: block; }
+.quiz-result.good {
+  background: #f0faf0;
+  border: 1px solid #6aab6a;
+  color: #2a5a2a;
+}
+.quiz-result.bad {
+  background: #fff5f0;
+  border: 1px solid #d4826a;
+  color: #6a2a0a;
+}
+.quiz-answer-feedback {
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  display: none;
+}
+.quiz-answer-feedback.correct {
+  background: #e6f4e6;
+  color: #2a5a2a;
+}
+.quiz-answer-feedback.wrong {
+  background: #fde8e0;
+  color: #7a2a0a;
+}
+.quiz-reset {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: transparent;
+  color: #8b3a0f;
+  border: 1px solid #8b3a0f;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 0.75rem;
+  font-family: system-ui, sans-serif;
+  transition: background 0.2s;
+}
+.quiz-reset:hover { background: #fdf0e0; }
+</style>
+
+<script>
+function runQuiz(formId, answers, explanations) {
+  const form = document.getElementById(formId);
+  const result = form.querySelector('.quiz-result');
+  let score = 0;
+  let total = answers.length;
+
+  // сбросить предыдущие фидбэки
+  form.querySelectorAll('.quiz-answer-feedback').forEach(el => {
+    el.style.display = 'none';
+    el.className = 'quiz-answer-feedback';
+  });
+
+  for (let i = 0; i < total; i++) {
+    const selected = form.querySelector('input[name="q' + i + '"]:checked');
+    const feedbackEl = form.querySelector('#feedback_' + formId + '_' + i);
+    if (selected && selected.value === answers[i]) {
+      score++;
+      if (feedbackEl) {
+        feedbackEl.textContent = '✓ Верно! ' + (explanations[i] || '');
+        feedbackEl.className = 'quiz-answer-feedback correct';
+        feedbackEl.style.display = 'block';
+      }
+    } else {
+      if (feedbackEl) {
+        feedbackEl.textContent = '✗ Неверно. ' + (explanations[i] || '');
+        feedbackEl.className = 'quiz-answer-feedback wrong';
+        feedbackEl.style.display = 'block';
+      }
+    }
+  }
+
+  result.className = 'quiz-result show ' + (score >= total * 0.7 ? 'good' : 'bad');
+  result.innerHTML = '<strong>Результат: ' + score + ' из ' + total + '</strong> — ' +
+    (score === total ? 'Блестяще! Вы отлично знаете этот период истории.' :
+     score >= total * 0.7 ? 'Хороший результат! Освежите детали по отдельным вопросам.' :
+     'Стоит перечитать материал экскурсии — там есть ответы на все вопросы.') +
+    '<button class="quiz-reset" onclick="resetQuiz('' + formId + '')">Пройти заново</button>';
+}
+
+function resetQuiz(formId) {
+  const form = document.getElementById(formId);
+  form.reset();
+  form.querySelector('.quiz-result').className = 'quiz-result';
+  form.querySelectorAll('.quiz-answer-feedback').forEach(el => el.style.display = 'none');
+}
+</script>
 
 </head>
 <body>
@@ -177,10 +225,10 @@
             </div>
             <div style="display:flex; flex-direction:column; gap:1rem; align-items:flex-end;">
                 <div class="hero-image">
-                    <img th:src="@{/images/andro.jpg}" alt="Спасо-Андроников монастырь">
+                    <img th:src="@{/images/andronikov.jpg}" alt="Спасо-Андроников монастырь">
                 </div>
                 <div class="hero-image">
-                    <img th:src="@{/images/rado.jpg}" alt="Сергий Радонежский">
+                    <img th:src="@{/images/sergiy.jpg}" alt="Сергий Радонежский">
                 </div>
             </div>
         </div>
@@ -210,7 +258,7 @@
                     <img th:src="@{/images/rublevpr.jpg}" alt="Работы Андрея Рублёва">
                 </div>
                 <div class="hero-image">
-                    <img th:src="@{/images/grek.jpg}" alt="Феофан Грек — учитель и современник Рублёва">
+                    <img th:src="@{/images/feophan.jpg}" alt="Феофан Грек — учитель и современник Рублёва">
                 </div>
             </div>
         </div>
@@ -240,7 +288,7 @@
                     <img th:src="@{/images/trinity.jpg}" alt="Икона Троица Андрея Рублёва">
                 </div>
                 <div class="hero-image">
-                    <img th:src="@{/images/sobor3.jpg}" alt="Троицкий собор Троице-Сергиевой лавры">
+                    <img th:src="@{/images/troitsky_sobor.jpg}" alt="Троицкий собор Троице-Сергиевой лавры">
                 </div>
             </div>
         </div>
@@ -266,6 +314,9 @@
                 <p><strong>Вывод:</strong> духовная культура стала опорой, на которой держалась идентичность Руси в тяжелейший период. Монастыри, иконопись, летописание — всё это возродилось после удара нашествия и составило основу классической русской культуры.</p>
             </div>
             <div style="display:flex; flex-direction:column; gap:1rem; align-items:flex-end;">
+                <div class="hero-image">
+                    <img th:src="@{/images/monastery_culture.jpg}" alt="Монастырская книжность Руси XIV–XV вв.">
+                </div>
             </div>
         </div>
     </section>
@@ -283,88 +334,88 @@
         </ol>
     </section>
 
-    <section class="quiz-section">
-        <h3>🎨 Проверьте себя: Викторина по экскурсии 3</h3>
-        <form id="quiz3">
+<section class="quiz-section">
+  <h3>🎨 Проверьте себя: Викторина по экскурсии 3</h3>
+  <form id="quiz3">
 
-            <div class="quiz-question">
-                <p>1. В каком году Андрей Рублёв впервые упоминается в летописях?</p>
-                <div class="quiz-options">
-                    <label><input type="radio" name="q0" value="a"> 1380 год</label>
-                    <label><input type="radio" name="q0" value="b"> 1405 год</label>
-                    <label><input type="radio" name="q0" value="c"> 1422 год</label>
-                    <label><input type="radio" name="q0" value="d"> 1360 год</label>
-                </div>
-                <div class="quiz-answer-feedback" id="feedback_quiz3_0"></div>
-            </div>
+    <div class="quiz-question">
+      <p>1. В каком году Андрей Рублёв впервые упоминается в летописях?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="q0" value="a"> 1380 год</label>
+        <label><input type="radio" name="q0" value="b"> 1405 год</label>
+        <label><input type="radio" name="q0" value="c"> 1422 год</label>
+        <label><input type="radio" name="q0" value="d"> 1360 год</label>
+      </div>
+      <div class="quiz-answer-feedback" id="feedback_quiz3_0"></div>
+    </div>
 
-            <div class="quiz-question">
-                <p>2. Вместе с кем Рублёв расписывал Благовещенский собор Московского Кремля в 1405 году?</p>
-                <div class="quiz-options">
-                    <label><input type="radio" name="q1" value="a"> С Даниилом Чёрным и Дионисием</label>
-                    <label><input type="radio" name="q1" value="b"> С Феофаном Греком и Прохором с Городца</label>
-                    <label><input type="radio" name="q1" value="c"> С Симоном Ушаковым и Никоном Радонежским</label>
-                    <label><input type="radio" name="q1" value="d"> Он работал один</label>
-                </div>
-                <div class="quiz-answer-feedback" id="feedback_quiz3_1"></div>
-            </div>
+    <div class="quiz-question">
+      <p>2. Вместе с кем Рублёв расписывал Благовещенский собор Московского Кремля в 1405 году?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="q1" value="a"> С Даниилом Чёрным и Дионисием</label>
+        <label><input type="radio" name="q1" value="b"> С Феофаном Греком и Прохором с Городца</label>
+        <label><input type="radio" name="q1" value="c"> С Симоном Ушаковым и Никоном Радонежским</label>
+        <label><input type="radio" name="q1" value="d"> Он работал один</label>
+      </div>
+      <div class="quiz-answer-feedback" id="feedback_quiz3_1"></div>
+    </div>
 
-            <div class="quiz-question">
-                <p>3. Какой дорогостоящий пигмент из Афганистана использовался для знаменитого голубого цвета в иконах Рублёва?</p>
-                <div class="quiz-options">
-                    <label><input type="radio" name="q2" value="a"> Малахит</label>
-                    <label><input type="radio" name="q2" value="b"> Киноварь</label>
-                    <label><input type="radio" name="q2" value="c"> Лазурит</label>
-                    <label><input type="radio" name="q2" value="d"> Охра</label>
-                </div>
-                <div class="quiz-answer-feedback" id="feedback_quiz3_2"></div>
-            </div>
+    <div class="quiz-question">
+      <p>3. Какой дорогостоящий пигмент из Афганистана использовался для знаменитого голубого цвета в иконах Рублёва?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="q2" value="a"> Малахит</label>
+        <label><input type="radio" name="q2" value="b"> Киноварь</label>
+        <label><input type="radio" name="q2" value="c"> Лазурит</label>
+        <label><input type="radio" name="q2" value="d"> Охра</label>
+      </div>
+      <div class="quiz-answer-feedback" id="feedback_quiz3_2"></div>
+    </div>
 
-            <div class="quiz-question">
-                <p>4. Сколько лет икона «Троица» была скрыта металлическим окладом?</p>
-                <div class="quiz-options">
-                    <label><input type="radio" name="q3" value="a"> Около 100 лет</label>
-                    <label><input type="radio" name="q3" value="b"> Около 200 лет</label>
-                    <label><input type="radio" name="q3" value="c"> Около 500 лет — с XVI по начало XX века</label>
-                    <label><input type="radio" name="q3" value="d"> Она никогда не была закрыта окладом</label>
-                </div>
-                <div class="quiz-answer-feedback" id="feedback_quiz3_3"></div>
-            </div>
+    <div class="quiz-question">
+      <p>4. Сколько лет икона «Троица» была скрыта металлическим окладом?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="q3" value="a"> Около 100 лет</label>
+        <label><input type="radio" name="q3" value="b"> Около 200 лет</label>
+        <label><input type="radio" name="q3" value="c"> Около 500 лет — с XVI по начало XX века</label>
+        <label><input type="radio" name="q3" value="d"> Она никогда не была закрыта окладом</label>
+      </div>
+      <div class="quiz-answer-feedback" id="feedback_quiz3_3"></div>
+    </div>
 
-            <div class="quiz-question">
-                <p>5. Что изображает чаша на иконе «Троица» и зачем Рублёв убрал фигуры Авраама и Сарры?</p>
-                <div class="quiz-options">
-                    <label><input type="radio" name="q4" value="a"> Чаша — символ гостеприимства; Авраам убран ради экономии места</label>
-                    <label><input type="radio" name="q4" value="b"> Чаша — символ жертвы Христовой (Евхаристии); убрав людей, Рублёв превратил бытовую сцену в богословский образ самой Троицы</label>
-                    <label><input type="radio" name="q4" value="c"> Чаша — символ победы над монголами</label>
-                    <label><input type="radio" name="q4" value="d"> Авраам убран по требованию заказчика — Никона Радонежского</label>
-                </div>
-                <div class="quiz-answer-feedback" id="feedback_quiz3_4"></div>
-            </div>
+    <div class="quiz-question">
+      <p>5. Что изображает чаша на иконе «Троица» и зачем Рублёв убрал фигуры Авраама и Сарры?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="q4" value="a"> Чаша — символ гостеприимства; Авраам убран ради экономии места</label>
+        <label><input type="radio" name="q4" value="b"> Чаша — символ жертвы Христовой (Евхаристии); убрав людей, Рублёв превратил бытовую сцену в богословский образ самой Троицы</label>
+        <label><input type="radio" name="q4" value="c"> Чаша — символ победы над монголами</label>
+        <label><input type="radio" name="q4" value="d"> Авраам убран по требованию заказчика — Никона Радонежского</label>
+      </div>
+      <div class="quiz-answer-feedback" id="feedback_quiz3_4"></div>
+    </div>
 
-            <div class="quiz-question">
-                <p>6. Почему большинство средневековых иконописцев неизвестны нам по именам?</p>
-                <div class="quiz-options">
-                    <label><input type="radio" name="q5" value="a"> Документы были уничтожены монголами</label>
-                    <label><input type="radio" name="q5" value="b"> Подписывать иконы своим именем считалось грехом гордыни — иконописец был слугой Бога, а не художником</label>
-                    <label><input type="radio" name="q5" value="c"> Иконописцев нанимали анонимно по закону</label>
-                    <label><input type="radio" name="q5" value="d"> Они специально скрывали имена из-за преследований</label>
-                </div>
-                <div class="quiz-answer-feedback" id="feedback_quiz3_5"></div>
-            </div>
+    <div class="quiz-question">
+      <p>6. Почему большинство средневековых иконописцев неизвестны нам по именам?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="q5" value="a"> Документы были уничтожены монголами</label>
+        <label><input type="radio" name="q5" value="b"> Подписывать иконы своим именем считалось грехом гордыни — иконописец был слугой Бога, а не художником</label>
+        <label><input type="radio" name="q5" value="c"> Иконописцев нанимали анонимно по закону</label>
+        <label><input type="radio" name="q5" value="d"> Они специально скрывали имена из-за преследований</label>
+      </div>
+      <div class="quiz-answer-feedback" id="feedback_quiz3_5"></div>
+    </div>
 
-            <div class="quiz-question">
-                <p>7. Сколько новых монастырей было основано учениками Сергия Радонежского в XIV–XV веках?</p>
-                <div class="quiz-options">
-                    <label><input type="radio" name="q6" value="a"> Около 10</label>
-                    <label><input type="radio" name="q6" value="b"> Около 30</label>
-                    <label><input type="radio" name="q6" value="c"> Около 70</label>
-                    <label><input type="radio" name="q6" value="d"> Около 150</label>
-                </div>
-                <div class="quiz-answer-feedback" id="feedback_quiz3_6"></div>
-            </div>
+    <div class="quiz-question">
+      <p>7. Сколько новых монастырей было основано учениками Сергия Радонежского в XIV–XV веках?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="q6" value="a"> Около 10</label>
+        <label><input type="radio" name="q6" value="b"> Около 30</label>
+        <label><input type="radio" name="q6" value="c"> Около 70</label>
+        <label><input type="radio" name="q6" value="d"> Около 150</label>
+      </div>
+      <div class="quiz-answer-feedback" id="feedback_quiz3_6"></div>
+    </div>
 
-            <button type="button" class="quiz-submit" onclick="runQuiz('quiz3', ['b','b','c','c','b','b','c'], [
+    <button type="button" class="quiz-submit" onclick="runQuiz('quiz3', ['b','b','c','c','b','b','c'], [
       'Впервые Рублёв упоминается в летописях в 1405 году в связи с росписью Благовещенского собора Кремля.',
       'В 1405 году Рублёв работал вместе с Феофаном Греком и Прохором с Городца.',
       'Знаменитый голубой цвет получался из лазурита — камня, добывавшегося в Афганистане. Он стоил дороже золота.',
@@ -374,9 +425,9 @@
       'Только учениками Сергия Радонежского было основано около 70 новых обителей — это была крупнейшая волна монастырского строительства в истории Руси.'
     ])">Проверить ответы</button>
 
-            <div class="quiz-result"></div>
-        </form>
-    </section>
+    <div class="quiz-result"></div>
+  </form>
+</section>
 
 </main>
 
@@ -385,60 +436,5 @@
         <p>&copy; 2026 Виртуальный музей. Авторы: Колегов Максим, Конышков Леонид, Зезюкин Михаил.</p>
     </div>
 </footer>
-
-<script>
-    function runQuiz(formId, answers, explanations) {
-        const form = document.getElementById(formId);
-        const result = form.querySelector('.quiz-result');
-        let score = 0;
-        let total = answers.length;
-
-        // сбросить предыдущие фидбэки
-        form.querySelectorAll('.quiz-answer-feedback').forEach(el => {
-            el.style.display = 'none';
-            el.className = 'quiz-answer-feedback';
-        });
-
-        for (let i = 0; i < total; i++) {
-            const selected = form.querySelector('input[name="q' + i + '"]:checked');
-            const feedbackEl = form.querySelector('#feedback_' + formId + '_' + i);
-            if (selected && selected.value === answers[i]) {
-                score++;
-                if (feedbackEl) {
-                    feedbackEl.textContent = '✓ Верно! ' + (explanations[i] || '');
-                    feedbackEl.className = 'quiz-answer-feedback correct';
-                    feedbackEl.style.display = 'block';
-                }
-            } else {
-                if (feedbackEl) {
-                    feedbackEl.textContent = '✗ Неверно. ' + (explanations[i] || '');
-                    feedbackEl.className = 'quiz-answer-feedback wrong';
-                    feedbackEl.style.display = 'block';
-                }
-            }
-        }
-
-        result.className = 'quiz-result show ' + (score >= total * 0.7 ? 'good' : 'bad');
-        result.innerHTML = '<strong>Результат: ' + score + ' из ' + total + '</strong> — ' +
-            (score === total ? 'Блестяще! Вы отлично знаете этот период истории.' :
-                score >= total * 0.7 ? 'Хороший результат! Освежите детали по отдельным вопросам.' :
-                    'Стоит перечитать материал экскурсии — там есть ответы на все вопросы.') +
-            '<button class="quiz-reset" onclick="resetQuiz(\'' + formId + '\')">Пройти заново</button>';
-    }
-
-    function resetQuiz(formId) {
-        const form = document.getElementById(formId);
-        form.reset();
-        const resultDiv = form.querySelector('.quiz-result');
-        if (resultDiv) {
-            resultDiv.className = 'quiz-result';
-        }
-        form.querySelectorAll('.quiz-answer-feedback').forEach(el => {
-            el.style.display = 'none';
-            el.className = 'quiz-answer-feedback';
-        });
-    }
-</script>
-
 </body>
 </html>
